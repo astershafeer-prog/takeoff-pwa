@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TakeOff Members</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f5f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #359D9E 0%, #215273 100%);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header h1 {
+            font-size: 20px;
+        }
+        .logout-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .member-card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .member-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #215273;
+            margin-bottom: 5px;
+        }
+        .member-business {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 3px;
+        }
+        .member-industry {
+            font-size: 13px;
+            color: #359D9E;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+        .contact-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #25D366;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+        .count {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>TakeOff Members</h1>
+        <a href="/logout" class="logout-btn">Logout</a>
+    </div>
+    
+    <div class="container">
+        <div class="count">
+            <strong>{{ members|length }}</strong> Members
+        </div>
+        
+        {% for member in members %}
+        <div class="member-card">
+            <div class="member-name">{{ member.name }}</div>
+            <div class="member-business">{{ member.business }}</div>
+            <div class="member-industry">{{ member.industry }}</div>
+            <a href="https://wa.me/{{ member.phone.replace('+', '').replace('-', '') }}" class="contact-btn" target="_blank">
+                💬 WhatsApp
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
